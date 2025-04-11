@@ -1,0 +1,14 @@
+# The main pipeline for internal_data_poc
+resources:
+  pipelines:
+    internal_data_poc_pipeline:
+      name: internal_data_poc_pipeline
+      ## Specify the 'catalog' field to configure this pipeline to make use of Unity Catalog:
+      # catalog: catalog_name
+      target: internal_data_poc_${bundle.target}
+      libraries:
+        - notebook:
+            path: ../src/pipelines/dlt_pipeline.ipynb
+
+      configuration:
+        bundle.sourcePath: ${workspace.file_path}/src
